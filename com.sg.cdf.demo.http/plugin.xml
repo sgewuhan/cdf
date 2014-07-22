@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.equinox.http.registry.resources">
+      <resource
+            alias="/html"
+            base-name="/html">
+      </resource>
+   </extension>
+   
+      <extension
+         point="com.sg.cdf.core.monitor.cdfmonitor">
+      <monitor
+            id="mongodemoA"
+            name="任务库A(JSON)"
+            persistence="com.sg.cdf.persistence.mongodb.MongoDBJsonDistribution">
+      </monitor>
+      <monitor
+            id="mongodemoB"
+            name="任务库B(BYTE)"
+            persistence="com.sg.cdf.persistence.mongodb.MongoDBByteDistribution">
+      </monitor>
+   </extension>
+</plugin>

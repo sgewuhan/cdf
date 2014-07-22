@@ -1,0 +1,30 @@
+#banner {
+	display: none !important;
+}
+#footer {
+	display: none !important;
+}
+#leftcol {
+	display: none !important;
+}
+#breadcrumbs {
+	display: none !important;
+}
+.docs #toc {
+	display: none !important;
+}
+.docs .courtesylinks {
+	display: none !important;
+}
+#leftColumn {
+	display: none !important;
+}
+#navColumn {
+	display: none !important;
+}
+#bodyColumn {
+	margin: 0px !important; border: currentColor !important; border-image: none !important;
+}
+body.docs div.docs {
+	margin: 0px !important; border: currentColor !important; border-image: none !important;
+}

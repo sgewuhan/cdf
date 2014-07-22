@@ -1,0 +1,13 @@
+Bundle-ManifestVersion: 2
+Bundle-Name: Customerized
+Bundle-SymbolicName: com.sg.cdf.customerized;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: SG
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.core.runtime,
+ com.sg.cdf.core;bundle-version="1.0.0",
+ com.sg.birtcomposer;bundle-version="1.0.0",
+ com.sg.cdf.persistence.mongodb;bundle-version="1.0.0"
+Import-Package: org.apache.commons.io
+Export-Package: com.sg.cdf.demo.demo2.contentprovider,
+ com.sg.cdf.demo.demo2.distributor

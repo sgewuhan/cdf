@@ -1,0 +1,13 @@
+Bundle-ManifestVersion: 2
+Bundle-Name: Persistence
+Bundle-SymbolicName: com.sg.cdf.persistence.mongodb;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.sg.cdf.persistence.mongodb.Activator
+Bundle-Vendor: SG
+Require-Bundle: org.eclipse.core.runtime,
+ com.sg.cdf.core;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: com.sg.cdf.persistence.mongodb
+Bundle-ClassPath: libs/mongo-java-driver-2.11.3.jar,
+ .

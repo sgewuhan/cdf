@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="com.sg.cdf.core.distribution">
+      <distribution
+            id="demo.worknotice"
+            name="工作通知"
+            persistence="com.sg.cdf.persistence.mongodb.MongoDBByteDistribution">
+         <distributor
+               class="com.sg.cdf.demo.demo1.distributor.DistributorByTextEmail">
+         </distributor>
+         <distributor
+               class="com.sg.cdf.demo.demo1.distributor.DistributorByTextEmailWithAttachment">
+         </distributor>
+         <distributor
+               class="com.sg.cdf.demo.demo1.distributor.DistributorByHtmlEmail">
+         </distributor>
+         <distributor
+               class="com.sg.cdf.demo.demo1.distributor.DistributorByImageHtmlEmail">
+         </distributor>
+         <distributor
+               class="com.sg.cdf.demo.demo1.distributor.DistributorByHtml">
+         </distributor>
+      </distribution>
+      <distribution
+            content="com.sg.cdf.demo.demo2.contentprovider.ContentProviderDemo"
+            id="demo.worknotice1"
+            name="工作通知传递参数"
+            persistence="com.sg.cdf.persistence.mongodb.MongoDBJsonDistribution">
+         <distributor
+               class="com.sg.cdf.demo.demo2.distributor.DistributorByEmailWithParameter">
+         </distributor>
+         <parameter
+               name="templateURL">
+         </parameter>
+         <parameter
+               name="dataURL">
+         </parameter>
+      </distribution>
+   </extension>
+
+</plugin>
