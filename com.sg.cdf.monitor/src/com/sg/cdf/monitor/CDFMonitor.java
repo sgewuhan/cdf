@@ -17,7 +17,7 @@ import org.osgi.framework.BundleContext;
 public class CDFMonitor extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "com.sg.cdf.core.monitor"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "com.sg.cdf.monitor"; //$NON-NLS-1$
 
 	// The shared instance
 	private static CDFMonitor plugin;

@@ -1,6 +1,6 @@
 Bundle-ManifestVersion: 2
 Bundle-Name: Monitor
-Bundle-SymbolicName: com.sg.cdf.core.monitor;singleton:=true
+Bundle-SymbolicName: com.sg.cdf.monitor;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: com.sg.cdf.monitor.CDFMonitor
 Bundle-Vendor: SG

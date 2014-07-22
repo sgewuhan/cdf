@@ -10,7 +10,7 @@
    </extension>
    
       <extension
-         point="com.sg.cdf.core.monitor.cdfmonitor">
+         point="com.sg.cdf.monitor.cdfmonitor">
       <monitor
             id="mongodemoA"
             name="任务库A(JSON)"
