@@ -1,0 +1,10 @@
+Bundle-ManifestVersion: 2
+Bundle-Name: Composer
+Bundle-SymbolicName: com.sg.birtcomposer;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: SG
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.birt.report.engine
+Export-Package: com.sg.birtcomposer.birt
+Bundle-Activator: com.sg.birtcomposer.ComposerActivator
+Bundle-ActivationPolicy: lazy

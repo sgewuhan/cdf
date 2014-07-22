@@ -1,0 +1,12 @@
+Bundle-ManifestVersion: 2
+Bundle-Name: Monitor
+Bundle-SymbolicName: com.sg.cdf.core.monitor;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.sg.cdf.monitor.CDFMonitor
+Bundle-Vendor: SG
+Require-Bundle: org.eclipse.rap.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.expressions;bundle-version="3.4.500",
+ com.sg.cdf.core;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

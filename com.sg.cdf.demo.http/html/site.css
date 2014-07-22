@@ -1,0 +1,180 @@
+div.clear {
+	clear: both; visibility: hidden;
+}
+div.clear hr {
+	display: none;
+}
+a[href^='http'].externalLink {
+	background: none;
+}
+#publishDate {
+	padding: 10px 0px 10px 10px;
+}
+#projectVersion {
+	padding: 10px 0px 10px 10px;
+}
+.divider {
+	padding: 10px 0px 10px 10px;
+}
+li {
+	line-height: 20px;
+}
+tt {
+	padding: 3px 4px; border-radius: 3px; border: 1px solid rgb(225, 225, 232); border-image: none; color: rgb(221, 17, 68); font-family: Menlo, Monaco, "Courier New", monospace; font-size: 12px; background-color: rgb(247, 247, 249); -webkit-border-radius: 3px; -moz-border-radius: 3px;
+}
+dt {
+	margin: 15px 0px 5px; font-size: 1.2em;
+}
+.big-red {
+	color: rgb(221, 17, 68); font-weight: bold;
+}
+.big-green {
+	color: green; font-weight: bold;
+}
+.layout-table {
+	width: 100%;
+}
+.sidebar {
+	width: 250px; vertical-align: top;
+}
+.content {
+	padding-left: 20px; vertical-align: top;
+}
+.sidebar-nav {
+	padding: 9px 0px;
+}
+.logo-left {
+	margin: 10px; float: left;
+}
+.logo-right {
+	margin: 5px; height: 100px; float: right;
+}
+.navbar .nav {
+	margin-left: 40px;
+}
+.nav-list {
+	margin-bottom: 15px;
+}
+.nav-list li {
+	line-height: 16px;
+}
+.nav-list li.nav-header {
+	color: rgb(51, 51, 51);
+}
+.nav-list li.nav-header i {
+	margin-right: 5px;
+}
+.nav-list li a {
+	background-position: 16px 9px; padding-left: 34px; background-repeat: no-repeat;
+}
+.nav-list li.collapsed > a {
+	background-image: url("../images/collapsed.gif");
+}
+.nav-list li.expanded > a {
+	background-image: url("../images/expanded.gif");
+}
+.nav-list li.expanded ul {
+	list-style: none; margin-left: 0px;
+}
+.nav-list li.expanded li a {
+	padding: 3px 15px 3px 45px; margin-right: -15px; margin-left: -15px; display: block;
+}
+.nav-list li.expanded li a:hover {
+	text-decoration: none; background-color: rgb(238, 238, 238);
+}
+.nav-list li.expanded li.active a {
+	color: white; background-color: rgb(0, 136, 204);
+}
+.nav-tabs.nav {
+	margin-bottom: 8px;
+}
+.content .section {
+	margin-top: 20px;
+}
+.content :first-child.section {
+	margin-top: 0px;
+}
+.section h2 {
+	margin-bottom: 10px;
+}
+.section h3 {
+	margin-bottom: 10px;
+}
+.section h4 {
+	margin-bottom: 10px;
+}
+.footer {
+	padding: 15px; text-align: center; margin-top: 15px; border-top-color: rgb(238, 238, 238); border-top-width: 1px; border-top-style: solid; background-color: whitesmoke;
+}
+.footer p {
+	margin: 0px; font-size: 12px;
+}
+div {
+	margin: 0px; font-size: 12px;
+}
+.table-not-wide {
+	width: inherit;
+}
+.alert-heading {
+	font-size: 14px; font-weight: bold; margin-bottom: 6px; display: block;
+}
+.builtBy {
+	padding-top: 3px; margin-right: auto; margin-left: auto; display: block;
+}
+.com {
+	color: rgb(147, 161, 161);
+}
+.lit {
+	color: rgb(25, 95, 145);
+}
+.pun {
+	color: rgb(147, 161, 161);
+}
+.opn {
+	color: rgb(147, 161, 161);
+}
+.clo {
+	color: rgb(147, 161, 161);
+}
+.fun {
+	color: rgb(220, 50, 47);
+}
+.str {
+	color: rgb(221, 17, 68);
+}
+.atv {
+	color: rgb(221, 17, 68);
+}
+.kwd {
+	color: rgb(30, 52, 123);
+}
+.linenums .tag {
+	color: rgb(30, 52, 123);
+}
+.typ {
+	color: teal;
+}
+.atn {
+	color: teal;
+}
+.dec {
+	color: teal;
+}
+.var {
+	color: teal;
+}
+.pln {
+	color: rgb(72, 72, 76);
+}
+.prettyprint {
+	padding: 8px; border: 1px solid rgb(225, 225, 232); border-image: none; background-color: rgb(247, 247, 249);
+}
+.linenums.prettyprint {
+	box-shadow: inset 40px 0px 0px #fbfbfc, inset 41px 0px 0px #ececf0; -webkit-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0; -moz-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+}
+ol.linenums {
+	margin: 0px 0px 0px 33px;
+}
+ol.linenums li {
+	color: rgb(190, 190, 197); line-height: 18px; padding-left: 12px; text-shadow: 0px 1px 0px #fff;
+}

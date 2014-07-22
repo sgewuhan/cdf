@@ -1,0 +1,10 @@
+Bundle-ManifestVersion: 2
+Bundle-Name: Content Distribution Framework Web Service
+Bundle-SymbolicName: com.sg.cdf.ws
+Bundle-Version: 1.0.0
+Bundle-Activator: com.sg.cdf.ws.Activator
+Bundle-Vendor: SG
+Import-Package: org.osgi.framework;version="1.3.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: com.sg.cdf.ws.service
+Require-Bundle: org.eclipse.osgi
