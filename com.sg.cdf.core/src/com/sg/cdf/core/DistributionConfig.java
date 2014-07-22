@@ -16,17 +16,7 @@ public class DistributionConfig {
 
 	public DistributionConfig(IConfigurationElement ce) {
 		this.ce = ce;
-//		registerClass();
 	}
-
-//	private void registerClass() {
-//		CDF.registeJsonSerializeable(ce,"persistence");
-//		CDF.registeJsonSerializeable(ce,"contentProvider");
-//		IConfigurationElement[] children = ce.getChildren("distributor");
-//		for (int k = 0; k < children.length; k++) {
-//			CDF.registeJsonSerializeable(children[k],"class");
-//		}
-//	}
 
 	public String getName() {
 		return ce.getAttribute("name");
