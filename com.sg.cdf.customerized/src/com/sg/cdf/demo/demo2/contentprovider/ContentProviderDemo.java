@@ -72,7 +72,7 @@ public class ContentProviderDemo extends ContentProvider {
 			String pdfFileName = System.getProperty("java.io.tmpdir")
 					+ Long.toHexString(System.currentTimeMillis()) + ".pdf";
 			generatePDF(composer, pdfFileName);
-			//生成Work作为附件2
+			//生成Word作为附件2
 			String wordFileName = System.getProperty("java.io.tmpdir")
 					+ Long.toHexString(System.currentTimeMillis()) + ".docx";
 			generateDOCX(composer, wordFileName);
