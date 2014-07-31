@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Properties;
 
 import org.osgi.framework.BundleActivator;
@@ -16,10 +17,10 @@ import com.sg.cdf.ws.service.DistributionService;
 
 public class Activator implements BundleActivator {
 
-	private static final String ORG_APACHE_CXF_WS_ADDRESS = "org.apache.cxf.ws.address";
-	private static final String SERVICE_EXPORTED_CONFIGS = "service.exported.configs";
-	private static final String SERVICE_EXPORTED_INTENTS = "service.exported.intents";
-	private static final String SERVICE_EXPORTED_INTERFACES = "service.exported.interfaces";
+//	private static final String ORG_APACHE_CXF_WS_ADDRESS = "org.apache.cxf.ws.address";
+//	private static final String SERVICE_EXPORTED_CONFIGS = "service.exported.configs";
+//	private static final String SERVICE_EXPORTED_INTENTS = "service.exported.intents";
+//	private static final String SERVICE_EXPORTED_INTERFACES = "service.exported.interfaces";
 	private static BundleContext context;
 
 	static BundleContext getContext() {
@@ -49,15 +50,12 @@ public class Activator implements BundleActivator {
 			conf.load(is);
 
 			Dictionary<String, String> props = new Hashtable<String, String>();
-			props.put(SERVICE_EXPORTED_INTERFACES,
-					conf.getProperty(SERVICE_EXPORTED_INTERFACES, "*"));
-			props.put(SERVICE_EXPORTED_INTENTS,
-					conf.getProperty(SERVICE_EXPORTED_INTERFACES, "SOAP"));
-			props.put(SERVICE_EXPORTED_CONFIGS, conf.getProperty(
-					SERVICE_EXPORTED_CONFIGS, "org.apache.cxf.ws"));
-			props.put(ORG_APACHE_CXF_WS_ADDRESS,conf.getProperty(
-					SERVICE_EXPORTED_CONFIGS, 
-					"http://localhost:9000/distribution"));
+			Iterator<String> iter = conf.stringPropertyNames().iterator();
+			while (iter.hasNext()) {
+				String key = iter.next();
+				props.put(key, conf.getProperty(key));
+			}
+
 			// ×¢²á·þÎñ
 			registration = Activator.context.registerService(
 					DistributionService.class.getName(),
