@@ -44,20 +44,24 @@ public class DistributionServiceImpl implements DistributionService {
 		ArrayList<Parameter> parameters = builder.getParameters();
 		if (parameters != null) {
 			for (int i = 0; i < parameters.size(); i++) {
-				req.setParameterValue(parameters.get(i).getName(), parameters.get(i).getValue());
+				req.setParameterValue(parameters.get(i).getName(), parameters
+						.get(i).getValue());
 			}
 		}
 
 		space = builder.getContentProvider();
-		instance = getInstance(space.getBundle(), space.getClas());
-		if (instance instanceof ContentProvider) {
-			req.registerContentProvider((ContentProvider) instance);
+		if (space != null) {
+			instance = getInstance(space.getBundle(), space.getClas());
+			if (instance instanceof ContentProvider) {
+				req.registerContentProvider((ContentProvider) instance);
+			}
 		}
 
-		 ArrayList<NameSpace> ns = builder.getDistributors();
+		ArrayList<NameSpace> ns = builder.getDistributors();
 		if (ns != null) {
 			for (int i = 0; i < ns.size(); i++) {
-				instance = getInstance(ns.get(i).getBundle(), ns.get(i).getClas());
+				instance = getInstance(ns.get(i).getBundle(), ns.get(i)
+						.getClas());
 				if (instance instanceof Distributor) {
 					req.registeDistributor((Distributor) instance);
 				}

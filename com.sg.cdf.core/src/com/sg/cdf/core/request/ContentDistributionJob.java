@@ -36,19 +36,17 @@ public class ContentDistributionJob extends DistributionJob {
 	public void setContentProvider(ContentProvider contentProvider) {
 		this.contentProvider = contentProvider;
 	}
-	
+
 	@Override
 	protected void execute(MultiStatus status) {
-		if (contentProvider == null) {
-			return;
-		}
-
-		/*
-		 * 执行内容提取
-		 */
-		IStatus result = contentProvider.run(this);
-		if (result != null) {
-			status.add(result);
+		if (contentProvider != null) {
+			/*
+			 * 执行内容提取
+			 */
+			IStatus result = contentProvider.run(this);
+			if (result != null) {
+				status.add(result);
+			}
 		}
 
 		super.execute(status);
