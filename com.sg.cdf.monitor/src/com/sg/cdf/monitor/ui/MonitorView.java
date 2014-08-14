@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -250,6 +251,18 @@ public class MonitorView extends ViewPart {
 			}
 		};
 		createColumn("State", labelProvider, 100);
+		
+		/*
+		 * serverity
+		 */
+		labelProvider = new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				return getServerity(((DistributionJob) element));
+			}
+
+		};
+		createColumn("Serverity", labelProvider, 100);
 
 		/*
 		 * Ãû³ÆÁÐ
@@ -390,6 +403,23 @@ public class MonitorView extends ViewPart {
 			}
 		});
 		getSite().setSelectionProvider(viewer);
+	}
+
+	protected String getServerity(DistributionJob distributionJob) {
+		int code = distributionJob.getServerity();
+		switch(code){
+		case Status.OK:
+			return "OK";
+		case Status.CANCEL:
+			return "CANCEL";
+		case Status.ERROR:
+			return "ERROR";
+		case Status.INFO:
+			return "INFO";
+		case Status.WARNING:
+			return "WARNING";
+		}
+		return "";
 	}
 
 	private void createColumn(String name, ColumnLabelProvider labelProvider,

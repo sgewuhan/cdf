@@ -59,6 +59,8 @@ public class DistributionJob implements IDistributionJob,Comparable<Distribution
 
 	private Map<String, String> meta;
 
+	private int serverity;
+
 	DistributionJob(String name, CommonDistributionRequest request) {
 
 		setRequestId(request.getId());
@@ -391,19 +393,20 @@ public class DistributionJob implements IDistributionJob,Comparable<Distribution
 		}
 
 		int code = status.getSeverity();
+		setServerity(code);
 		String message = status.getMessage();
 		message = message.length() > 0 ? " :" + message : message;
 		switch (code) {
 		case IStatus.CANCEL:
-			setResult("Canceled");
+			setResult("Canceled ");
 		case IStatus.OK:
-			setResult("OK");
+			setResult("OK ");
 		case IStatus.ERROR:
-			setResult("Error" + message);
+			setResult("Error " + message);
 		case IStatus.WARNING:
-			setResult("Warning" + message);
+			setResult("Warning " + message);
 		case IStatus.INFO:
-			setResult("Information" + message);
+			setResult("Information " + message);
 		default:
 			break;
 		}
@@ -443,6 +446,14 @@ public class DistributionJob implements IDistributionJob,Comparable<Distribution
 			}
 			setResultDetail(sb.toString());
 		}
+	}
+
+	public void setServerity(int code) {
+		this.serverity = code;
+	}
+	
+	public int getServerity(){
+		return serverity;
 	}
 
 	public void setMeta(Map<String, String> meta) {
