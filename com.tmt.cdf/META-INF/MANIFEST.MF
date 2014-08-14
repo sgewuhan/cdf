@@ -1,0 +1,9 @@
+Bundle-ManifestVersion: 2
+Bundle-Name: Cdf
+Bundle-SymbolicName: com.tmt.cdf;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: TMT
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: com.sg.cdf.core;bundle-version="1.0.0"
+Import-Package: org.eclipse.core.runtime;version="3.4.0",
+ org.eclipse.core.runtime.jobs

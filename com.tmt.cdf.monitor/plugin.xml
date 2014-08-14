@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="com.sg.cdf.monitor.cdfmonitor">
+      <monitor
+            id="com.tmt.cdf.monitor1"
+            name="工作通知任务库"
+            persistence="com.sg.cdf.persistence.mongodb.MongoDBJsonDistribution">
+      </monitor>
+   </extension>
+
+</plugin>
