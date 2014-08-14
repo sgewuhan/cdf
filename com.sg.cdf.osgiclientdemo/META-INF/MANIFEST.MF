@@ -1,0 +1,10 @@
+Bundle-ManifestVersion: 2
+Bundle-Name: Osgiclientdemo
+Bundle-SymbolicName: com.sg.cdf.osgiclientdemo
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.sg.cdf.osgiclientdemo.Activator
+Bundle-Vendor: SG
+Require-Bundle: org.eclipse.core.runtime,
+ com.sg.cdf.ws;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
