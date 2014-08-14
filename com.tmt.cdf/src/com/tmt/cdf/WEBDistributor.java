@@ -9,6 +9,8 @@ import com.sg.cdf.core.request.IDistributionJob;
 
 public class WEBDistributor extends Distributor {
 
+	private static final long serialVersionUID = 1L;
+
 	public String message;
 
 

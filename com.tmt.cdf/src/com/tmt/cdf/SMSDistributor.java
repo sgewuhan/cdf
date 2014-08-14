@@ -9,6 +9,8 @@ import com.sg.cdf.core.request.IDistributionJob;
 
 public class SMSDistributor extends Distributor {
 
+	private static final long serialVersionUID = 1L;
+
 	public String senderId;
 
 	public String mobileNumber;
