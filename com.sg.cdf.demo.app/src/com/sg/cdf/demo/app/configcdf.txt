@@ -1,0 +1,5 @@
+com.sg.cdf.ws.impl_1.0.0.jar
+com.sg.cdf.ws_1.0.0.jar
+cxf-dosgi-ri-singlebundle-distribution-1.2.jar
+
+org.osgi.compendium-4.2.0.jar

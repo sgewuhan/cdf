@@ -51,6 +51,7 @@ public class Activator implements BundleActivator {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	/*
