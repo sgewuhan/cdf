@@ -72,7 +72,7 @@ public abstract class EMailDistributor extends Distributor {
 		email.setSmtpPort(CDF.EMAIL_SMTPPORT);
 		email.setSSLOnConnect(CDF.EMAIL_SSLONCONNECT);
 		email.setAuthentication(CDF.EMAIL_AUTHUSER, CDF.EMAIL_AUTHPASS);
-		email.setFrom(CDF.EMAIL_AUTHUSER, "SYSTEM");
+		email.setFrom(CDF.EMAIL_AUTHUSER, CDF.EMAIL_AUTHUSERNAME);
 	}
 
 	protected int getFormat() {

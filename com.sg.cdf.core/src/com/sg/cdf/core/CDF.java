@@ -26,6 +26,8 @@ public class CDF implements BundleActivator {
 	// The plug-in ID
 	public static final String PLUGIN_ID = "com.sg.cdf.core"; //$NON-NLS-1$
 
+	public static String EMAIL_AUTHUSERNAME = null;
+
 	public static String EMAIL_HOSTNAME = null;
 
 	public static int EMAIL_SMTPPORT = 0;
@@ -105,6 +107,7 @@ public class CDF implements BundleActivator {
 			EMAIL_SMTPPORT = Integer.parseInt(props
 					.getProperty("mail.smtp.port"));
 			EMAIL_AUTHUSER = props.getProperty("sender.address");
+			EMAIL_AUTHUSERNAME = props.getProperty("sender.name","CDF Messenger");
 			EMAIL_AUTHPASS = props.getProperty("sender.password");
 		} catch (Exception e) {
 			e.printStackTrace();
