@@ -1,7 +1,6 @@
 package com.sg.cdf.ws.impl;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.sg.cdf.core.CDF;
 import com.sg.cdf.core.content.ContentProvider;
@@ -87,8 +86,14 @@ public class DistributionServiceImpl implements DistributionService {
 	public void simpleApplicationEmailNotice(AppEmailNotice appEmailNotice) {
 		String appName = appEmailNotice.getAppName();
 		String name = appEmailNotice.getRequestName();
+		String receiverAddress = appEmailNotice.getReceiverAddress();
+		String reveiverName = appEmailNotice.getReceiverName();
+		String title = appEmailNotice.getSubject();
+		String body = appEmailNotice.getHtmlEmailBody();
+		
 		ContentDistributionRequest req = new ContentDistributionRequest(appName
 				+ "-" + name);
+		
 		NameSpace nameSpace = appEmailNotice.getPersistence();
 		if (nameSpace == null) {
 			nameSpace = new NameSpace();
@@ -99,13 +104,17 @@ public class DistributionServiceImpl implements DistributionService {
 		
 		try {
 			Object instance = getInstance(nameSpace.getBundle(), nameSpace.getClas());
-			if (instance instanceof ContentProvider) {
-				req.registerContentProvider((ContentProvider) instance);
+			if (instance instanceof IDistributionPersistence) {
+				req.setPersistence((IDistributionPersistence) instance);
 			}
+
+			req.setParameterValue("title", title);
+			req.setParameterValue("message",body );
+			req.setParameterValue("fromName",appName );
+			req.setParameterValue("toName",reveiverName );
+			req.setParameterValue("to",receiverAddress );
 			
-			List<Distributor> distributors = new ArrayList<Distributor>();
-			distributors.add(new HTMLEmail());
-			req.setDistributors(distributors);
+			req.registeDistributor(new HTMLEmail());
 			
 			req.createDistributionJob(true);
 		} catch (ClassNotFoundException e) {
