@@ -1,12 +1,15 @@
 package com.sg.cdf.ws.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sg.cdf.core.CDF;
 import com.sg.cdf.core.content.ContentProvider;
 import com.sg.cdf.core.distributor.Distributor;
+import com.sg.cdf.core.distributor.HTMLEmail;
 import com.sg.cdf.core.persistence.IDistributionPersistence;
 import com.sg.cdf.core.request.ContentDistributionRequest;
+import com.sg.cdf.ws.service.AppEmailNotice;
 import com.sg.cdf.ws.service.DistributionService;
 import com.sg.cdf.ws.service.NameSpace;
 import com.sg.cdf.ws.service.Parameter;
@@ -17,14 +20,14 @@ public class DistributionServiceImpl implements DistributionService {
 	@Override
 	public void distribute(RequestBuilder factory) {
 		try {
-			run(factory);
+			runDistribute(factory);
 		} catch (ClassNotFoundException | InstantiationException
 				| IllegalAccessException e) {
 			e.printStackTrace();
 		}
 	}
 
-	void run(RequestBuilder builder) throws ClassNotFoundException,
+	void runDistribute(RequestBuilder builder) throws ClassNotFoundException,
 			InstantiationException, IllegalAccessException {
 		ContentDistributionRequest req;
 		String extId = builder.getExtensionId();
@@ -78,6 +81,39 @@ public class DistributionServiceImpl implements DistributionService {
 			IllegalAccessException {
 		Class<?> bundleLoadedClass = CDF.getBundleLoadedClass(bundle, clas);
 		return bundleLoadedClass.newInstance();
+	}
+
+	@Override
+	public void simpleApplicationEmailNotice(AppEmailNotice appEmailNotice) {
+		String appName = appEmailNotice.getAppName();
+		String name = appEmailNotice.getRequestName();
+		ContentDistributionRequest req = new ContentDistributionRequest(appName
+				+ "-" + name);
+		NameSpace nameSpace = appEmailNotice.getPersistence();
+		if (nameSpace == null) {
+			nameSpace = new NameSpace();
+			nameSpace.setBundle("com.sg.cdf.persistence.mongodb");
+			nameSpace
+					.setClas("com.sg.cdf.persistence.mongodb.MongoDBJsonDistribution");
+		}
+		
+		try {
+			Object instance = getInstance(nameSpace.getBundle(), nameSpace.getClas());
+			if (instance instanceof ContentProvider) {
+				req.registerContentProvider((ContentProvider) instance);
+			}
+			
+			List<Distributor> distributors = new ArrayList<Distributor>();
+			distributors.add(new HTMLEmail());
+			req.setDistributors(distributors);
+			
+			req.createDistributionJob(true);
+		} catch (ClassNotFoundException e) {
+		} catch (InstantiationException e) {
+		} catch (IllegalAccessException e) {
+		}
+		
+
 	}
 
 }
