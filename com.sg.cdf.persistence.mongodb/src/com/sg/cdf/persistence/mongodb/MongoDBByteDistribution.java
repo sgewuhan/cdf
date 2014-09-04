@@ -70,6 +70,7 @@ public class MongoDBByteDistribution implements IDistributionPersistence {
 				e.printStackTrace();
 			}
 		}
+		cursor.close();
 		return result;
 	}
 

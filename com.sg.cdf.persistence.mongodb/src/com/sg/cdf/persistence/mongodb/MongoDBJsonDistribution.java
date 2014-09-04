@@ -56,6 +56,7 @@ public class MongoDBJsonDistribution extends
 				result.add(job);
 			}
 		}
+		cursor.close();
 		return result;
 	}
 
