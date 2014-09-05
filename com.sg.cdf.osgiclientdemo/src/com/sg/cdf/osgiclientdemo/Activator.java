@@ -35,15 +35,62 @@ public class Activator implements BundleActivator {
             public Object addingService(ServiceReference reference) {
                 Object service = super.addingService(reference);
                 if (service instanceof DistributionService) {
-                    useService((DistributionService) service);
+                    useService2((DistributionService) service);
                 }
                 return service;
             }
         };
         tracker.open();
 	}
+	
+	protected void useService2(DistributionService service) {
+		RequestBuilder factory  = new RequestBuilderImpl();
+		factory.setName("执行文档转换");
+		
+		NameSpace nameSpace = new NameSpace();
+		nameSpace.setBundle("com.sg.cdf.persistence.mongodb");
+		nameSpace.setClas("com.sg.cdf.persistence.mongodb.MongoDBJsonDistribution");
+		factory.setPersistence(nameSpace);
 
-	protected void useService(DistributionService service) {
+		//传递参数
+		ArrayList<Parameter> parameterList = new ArrayList<Parameter>();
+		
+		Parameter parameter = new Parameter();
+		parameter.setName("sourcePath");
+		parameter.setValue("h:/BizVision最终用户协议.docx");
+		parameterList.add(parameter);
+		
+		parameter = new Parameter();
+		parameter.setName("targetPath");
+		parameter.setValue("h:/abc.svg");
+		parameterList.add(parameter);
+		
+		parameter = new Parameter();
+		parameter.setName("targetMediaType");
+		parameter.setValue("svg");
+		parameterList.add(parameter);
+
+		factory.setParameters(parameterList);
+		
+		//注入内容提供者
+		nameSpace = new NameSpace();
+		nameSpace.setBundle("com.sg.cdf.contentconverter");
+		nameSpace.setClas("com.sg.cdf.contentconverter.contentprovider.ConvertContentProvider");
+		factory.setContentProvider(nameSpace);
+		
+		//注入发布器
+		ArrayList<NameSpace> nameSpaceList = new ArrayList<NameSpace>();
+		nameSpace = new NameSpace();
+		nameSpace.setBundle("com.sg.cdf.core");
+		nameSpace.setClas("com.sg.cdf.core.distributor.DummyDistributor");
+		nameSpaceList.add(nameSpace);
+		
+		factory.setDistributors(nameSpaceList);
+		
+		service.distribute(factory);
+	}
+
+	protected void useService1(DistributionService service) {
 		RequestBuilder factory  = new RequestBuilderImpl();
 		factory.setName("Web Service 调用内容服务并传递参数");
 		
