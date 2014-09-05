@@ -12,7 +12,7 @@ import com.sg.cdf.core.request.IDistributionJob;
 
 public class ConvertContentProvider extends ContentProvider {
 
-	private static final long serialVersionUID = -1L;
+	private static final long serialVersionUID = 1L;
 
 	public String sourceURL;// 源文件的URL地址
 
