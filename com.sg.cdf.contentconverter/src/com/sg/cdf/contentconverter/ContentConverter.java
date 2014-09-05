@@ -109,6 +109,7 @@ public class ContentConverter implements BundleActivator {
 	 */
 	public void stop(BundleContext bundleContext) throws Exception {
 		ContentConverter.context = null;
+		officeManager.stop();
 	}
 	
 	/**
