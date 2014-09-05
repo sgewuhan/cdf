@@ -46,6 +46,8 @@ public class CDF implements BundleActivator {
 
 	private static Map<String, DistributionConfig> distributions = new HashMap<String, DistributionConfig>();
 
+	private Properties properties;
+
 	/**
 	 * The constructor
 	 */
@@ -99,16 +101,16 @@ public class CDF implements BundleActivator {
 			fis = new FileInputStream(System.getProperty("user.dir") //$NON-NLS-1$
 					+ "/configuration/cdf.properties"); //$NON-NLS-1$
 			is = new BufferedInputStream(fis);
-			Properties props = new Properties();
-			props.load(is);
-			EMAIL_HOSTNAME = props.getProperty("mail.smtp.host");
-			EMAIL_SSLONCONNECT = "true".equalsIgnoreCase(props
+			properties = new Properties();
+			properties.load(is);
+			EMAIL_HOSTNAME = properties.getProperty("mail.smtp.host");
+			EMAIL_SSLONCONNECT = "true".equalsIgnoreCase(properties
 					.getProperty("mail.smtp.useSSL"));
-			EMAIL_SMTPPORT = Integer.parseInt(props
+			EMAIL_SMTPPORT = Integer.parseInt(properties
 					.getProperty("mail.smtp.port"));
-			EMAIL_AUTHUSER = props.getProperty("sender.address");
-			EMAIL_AUTHUSERNAME = props.getProperty("sender.name","CDF Messenger");
-			EMAIL_AUTHPASS = props.getProperty("sender.password");
+			EMAIL_AUTHUSER = properties.getProperty("sender.address");
+			EMAIL_AUTHUSERNAME = properties.getProperty("sender.name","CDF Messenger");
+			EMAIL_AUTHPASS = properties.getProperty("sender.password");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -126,6 +128,10 @@ public class CDF implements BundleActivator {
 				}
 			}
 		}
+	}
+	
+	public Properties getProperties() {
+		return properties;
 	}
 
 	/*
