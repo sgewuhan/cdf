@@ -2,7 +2,6 @@ package com.sg.cdf.core;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -94,42 +93,31 @@ public class CDF implements BundleActivator {
 		return distributions.get(id);
 	}
 
-	private void readEmailSetting() {
+	public static Properties readProperties() throws Exception {
 		InputStream is = null;
 		FileInputStream fis = null;
-		try {
-			fis = new FileInputStream(System.getProperty("user.dir") //$NON-NLS-1$
-					+ "/configuration/cdf.properties"); //$NON-NLS-1$
-			is = new BufferedInputStream(fis);
-			properties = new Properties();
-			properties.load(is);
-			EMAIL_HOSTNAME = properties.getProperty("mail.smtp.host");
-			EMAIL_SSLONCONNECT = "true".equalsIgnoreCase(properties
-					.getProperty("mail.smtp.useSSL"));
-			EMAIL_SMTPPORT = Integer.parseInt(properties
-					.getProperty("mail.smtp.port"));
-			EMAIL_AUTHUSER = properties.getProperty("sender.address");
-			EMAIL_AUTHUSERNAME = properties.getProperty("sender.name","CDF Messenger");
-			EMAIL_AUTHPASS = properties.getProperty("sender.password");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (fis != null) {
-				try {
-					fis.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-			if (is != null) {
-				try {
-					is.close();
-				} catch (IOException e) {
-				}
-			}
-		}
+		fis = new FileInputStream(System.getProperty("user.dir") //$NON-NLS-1$
+				+ "/configuration/cdf.properties"); //$NON-NLS-1$
+		is = new BufferedInputStream(fis);
+		Properties properties = new Properties();
+		properties.load(is);
+		fis.close();
+		return properties;
 	}
-	
+
+	private void readEmailSetting() throws Exception {
+		properties = readProperties();
+		EMAIL_HOSTNAME = properties.getProperty("mail.smtp.host");
+		EMAIL_SSLONCONNECT = "true".equalsIgnoreCase(properties
+				.getProperty("mail.smtp.useSSL"));
+		EMAIL_SMTPPORT = Integer.parseInt(properties
+				.getProperty("mail.smtp.port"));
+		EMAIL_AUTHUSER = properties.getProperty("sender.address");
+		EMAIL_AUTHUSERNAME = properties.getProperty("sender.name",
+				"CDF Messenger");
+		EMAIL_AUTHPASS = properties.getProperty("sender.password");
+	}
+
 	public Properties getProperties() {
 		return properties;
 	}

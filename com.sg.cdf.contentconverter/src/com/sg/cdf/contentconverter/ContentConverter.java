@@ -11,8 +11,6 @@ import org.artofsolving.jodconverter.office.OfficeConnectionProtocol;
 import org.artofsolving.jodconverter.office.OfficeManager;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.BundleEvent;
-import org.osgi.framework.BundleListener;
 
 import com.sg.cdf.core.CDF;
 
@@ -34,20 +32,11 @@ public class ContentConverter implements BundleActivator {
 	 */
 	public void start(BundleContext bundleContext) throws Exception {
 		ContentConverter.context = bundleContext;
-		bundleContext.addBundleListener(new BundleListener() {
-
-			@Override
-			public void bundleChanged(BundleEvent event) {
-				if (event.getBundle().getSymbolicName()
-						.equals("com.sg.cdf.core")) {
-					loadService();
-				}
-			}
-		});
+		loadService();
 	}
 	
-	protected void loadService() {
-		Properties props = CDF.getDefault().getProperties();
+	protected static void loadService() throws Exception {
+		Properties props = CDF.readProperties();
 		String sSofficePort = props.getProperty("office.port"); //$NON-NLS-1$
 		String sSofficeHome = props.getProperty("office.home"); //$NON-NLS-1$
 		String sTaskExecutionTimeout = props
@@ -89,18 +78,14 @@ public class ContentConverter implements BundleActivator {
 		} catch (Exception e) {
 		}
 
-		officeManager = configuration.buildOfficeManager();
 
-		formatRegistry = new DefaultDocumentFormatRegistry();
-
-		Thread t = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				officeManager.start(); // 启动服务
-			}
-
-		});
-		t.start();
+		try{
+			officeManager = configuration.buildOfficeManager();
+			formatRegistry = new DefaultDocumentFormatRegistry();
+			officeManager.start(); // 启动服务
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	/*
@@ -108,8 +93,14 @@ public class ContentConverter implements BundleActivator {
 	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext bundleContext) throws Exception {
+		try{
+			if(officeManager!=null){
+				officeManager.stop(); 
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		ContentConverter.context = null;
-		officeManager.stop();
 	}
 	
 	/**
@@ -122,6 +113,9 @@ public class ContentConverter implements BundleActivator {
 	 */
 	public static void convert(File inputFile, File outputFile, String mediaType)
 			throws Exception {
+		if(officeManager == null){
+			loadService();
+		}
 		OfficeDocumentConverter odc = new OfficeDocumentConverter(
 				officeManager, formatRegistry);
 		odc.convert(inputFile, outputFile,
