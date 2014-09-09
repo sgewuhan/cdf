@@ -78,7 +78,6 @@ public class ContentConverter implements BundleActivator {
 		} catch (Exception e) {
 		}
 
-
 		try{
 			officeManager = configuration.buildOfficeManager();
 			formatRegistry = new DefaultDocumentFormatRegistry();
