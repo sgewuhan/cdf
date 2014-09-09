@@ -11,4 +11,6 @@ public interface IDistributionRequest {
 
 	IDistributionJob createDistributionJob();
 
+	String execute();
+
 }

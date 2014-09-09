@@ -96,6 +96,12 @@ public class CommonDistributionRequest implements IDistributionRequest {
 		return job;
 	}
 
+	public String execute(){
+		IDistributionJob job = createDistributionJob(false);
+		String message = job.execute();
+		return message;
+	}
+	
 	final public List<Distributor> getDistributors() {
 		return distributors;
 	}

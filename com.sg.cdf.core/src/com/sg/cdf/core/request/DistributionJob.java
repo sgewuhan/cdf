@@ -18,7 +18,8 @@ import com.sg.cdf.core.CDF;
 import com.sg.cdf.core.distributor.Distributor;
 import com.sg.cdf.core.persistence.IDistributionPersistence;
 
-public class DistributionJob implements IDistributionJob,Comparable<DistributionJob>,Serializable {
+public class DistributionJob implements IDistributionJob,
+		Comparable<DistributionJob>, Serializable {
 
 	/**
 	 * 
@@ -97,7 +98,7 @@ public class DistributionJob implements IDistributionJob,Comparable<Distribution
 		addDistributorList(job.getDistributors());
 
 	}
-	
+
 	DistributionJob(DistributionJob job) {
 
 		setRequestId(job.getRequestId());
@@ -115,7 +116,6 @@ public class DistributionJob implements IDistributionJob,Comparable<Distribution
 		addDistributorList(job.getDistributors());
 
 	}
-	
 
 	final public void launch() {
 		job = new Job(getName()) {
@@ -169,13 +169,20 @@ public class DistributionJob implements IDistributionJob,Comparable<Distribution
 		job.schedule();
 	}
 
-	protected void execute(MultiStatus status) {
+	public String execute() {
+		return execute(null);
+	}
+	
+	public String execute(MultiStatus status) {
 		if (distributors == null || distributors.isEmpty()) {
-			status.add(new Status(Status.WARNING, CDF.PLUGIN_ID,
-					"Distribution job must has one distributor at least."));
-			return;
+			if (status != null) {
+				status.add(new Status(Status.WARNING, CDF.PLUGIN_ID,
+						"Distribution job must has one distributor at least."));
+			}
+			return "Distribution job must has one distributor at least.";
 		}
 
+		StringBuffer sb = new StringBuffer();
 		/*
 		 * Ö´ÐÐ·¢²¼
 		 */
@@ -183,9 +190,14 @@ public class DistributionJob implements IDistributionJob,Comparable<Distribution
 			Distributor distributor = distributors.get(i);
 			IStatus result = distributor.run(this);
 			if (result != null) {
-				status.add(result);
+				if (status != null) {
+					status.add(result);
+				}
+				sb.append(result.getMessage());
+				sb.append("\n");
 			}
 		}
+		return sb.toString();
 	}
 
 	public String getName() {
@@ -451,8 +463,8 @@ public class DistributionJob implements IDistributionJob,Comparable<Distribution
 	public void setServerity(int code) {
 		this.serverity = code;
 	}
-	
-	public int getServerity(){
+
+	public int getServerity() {
 		return serverity;
 	}
 
@@ -467,7 +479,7 @@ public class DistributionJob implements IDistributionJob,Comparable<Distribution
 	public boolean isFinished() {
 		return getDoneAt() != null;
 	}
-	
+
 	@Override
 	protected DistributionJob clone() throws CloneNotSupportedException {
 		return new DistributionJob(this);

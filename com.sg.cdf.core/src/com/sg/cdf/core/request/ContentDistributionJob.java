@@ -38,18 +38,25 @@ public class ContentDistributionJob extends DistributionJob {
 	}
 
 	@Override
-	protected void execute(MultiStatus status) {
+	public String execute(MultiStatus status) {
+		StringBuffer sb = new StringBuffer();
 		if (contentProvider != null) {
 			/*
 			 * 执行内容提取
 			 */
 			IStatus result = contentProvider.run(this);
 			if (result != null) {
-				status.add(result);
+				if(status!=null){
+					status.add(result);
+				}
+				sb.append(result.getMessage());
+				sb.append("\n");
 			}
 		}
 
-		super.execute(status);
+		String message = super.execute(status);
+		sb.append(message);
+		return sb.toString();
 	}
 
 	@Override

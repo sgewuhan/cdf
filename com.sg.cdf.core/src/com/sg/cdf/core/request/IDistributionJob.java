@@ -1,5 +1,6 @@
 package com.sg.cdf.core.request;
 
+
 public interface IDistributionJob {
 
 	void launch();
@@ -8,4 +9,6 @@ public interface IDistributionJob {
 
 	int getState();
 
+	String execute();
+	
 }

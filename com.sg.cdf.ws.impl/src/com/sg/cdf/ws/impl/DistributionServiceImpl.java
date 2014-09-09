@@ -25,9 +25,34 @@ public class DistributionServiceImpl implements DistributionService {
 			e.printStackTrace();
 		}
 	}
+	
+
+	@Override
+	public String run(RequestBuilder factory) {
+		ContentDistributionRequest req;
+		try {
+			req = createRequest(factory);
+			return req.execute();
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException e) {
+			e.printStackTrace();
+			return e.getMessage();
+		}
+	}
 
 	void runDistribute(RequestBuilder builder) throws ClassNotFoundException,
 			InstantiationException, IllegalAccessException {
+		ContentDistributionRequest req = createRequest(builder);
+
+		// 添加发布器，注意该发布器必须在扩展中进行注册
+		// 创建发布任务,并运行
+		req.createDistributionJob(true);
+	}
+
+
+	private ContentDistributionRequest createRequest(RequestBuilder builder)
+			throws ClassNotFoundException, InstantiationException,
+			IllegalAccessException {
 		ContentDistributionRequest req;
 		String extId = builder.getExtensionId();
 		String name = builder.getName();
@@ -69,10 +94,7 @@ public class DistributionServiceImpl implements DistributionService {
 				}
 			}
 		}
-
-		// 添加发布器，注意该发布器必须在扩展中进行注册
-		// 创建发布任务,并运行
-		req.createDistributionJob(true);
+		return req;
 	}
 
 	private Object getInstance(String bundle, String clas)
@@ -124,5 +146,6 @@ public class DistributionServiceImpl implements DistributionService {
 		
 
 	}
+
 
 }
