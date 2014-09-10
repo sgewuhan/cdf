@@ -1,7 +1,7 @@
 Bundle-ManifestVersion: 2
 Bundle-Name: Monitor
 Bundle-SymbolicName: com.tmt.cdf.monitor;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.0
 Bundle-Vendor: TMT
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: com.sg.cdf.monitor,

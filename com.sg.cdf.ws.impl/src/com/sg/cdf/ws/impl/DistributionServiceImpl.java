@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import javax.jws.WebService;
-import javax.xml.ws.soap.MTOM;
-
 import com.sg.cdf.core.CDF;
 import com.sg.cdf.core.content.ContentProvider;
 import com.sg.cdf.core.distributor.Distributor;
@@ -21,8 +18,6 @@ import com.sg.cdf.ws.service.NameSpace;
 import com.sg.cdf.ws.service.Parameter;
 import com.sg.cdf.ws.service.RequestBuilder;
 
-@MTOM
-@WebService(endpointInterface = "com.sg.cdf.ws.DistributionService")
 public class DistributionServiceImpl implements DistributionService {
 
 	@Override
