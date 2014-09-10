@@ -98,7 +98,7 @@ public class CommonDistributionRequest implements IDistributionRequest {
 
 	public String execute(){
 		IDistributionJob job = createDistributionJob(false);
-		String message = job.execute();
+		String message = job.run();
 		return message;
 	}
 	

@@ -169,8 +169,19 @@ public class DistributionJob implements IDistributionJob,
 		job.schedule();
 	}
 
-	public String execute() {
-		return execute(null);
+	public String run() {
+		setAboutToRunAt(new Date());
+		MultiStatus status = new MultiStatus(CDF.PLUGIN_ID, Status.OK,
+				null, null);
+		String message = execute(status);
+		setDoneAt(new Date());
+		setState(Job.NONE);
+		readStatus(status);
+		if (persistence == null) {
+			return message;
+		}
+		persistence.save(this);
+		return message;
 	}
 	
 	public String execute(MultiStatus status) {
@@ -396,8 +407,11 @@ public class DistributionJob implements IDistributionJob,
 
 	private void readJobStatus(Job job) {
 		setState(job.getState());
-
 		IStatus status = job.getResult();
+		readStatus(status);
+	}
+
+	private void readStatus(IStatus status) {
 		if (status == null) {
 			setResultDetail(null);
 			setResult(null);

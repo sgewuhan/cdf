@@ -9,6 +9,6 @@ public interface IDistributionJob {
 
 	int getState();
 
-	String execute();
+	String run();
 	
 }

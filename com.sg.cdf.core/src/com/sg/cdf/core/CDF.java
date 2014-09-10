@@ -47,6 +47,8 @@ public class CDF implements BundleActivator {
 
 	private Properties properties;
 
+	public static String FILE_SERVER_PATH;
+
 	/**
 	 * The constructor
 	 */
@@ -63,7 +65,7 @@ public class CDF implements BundleActivator {
 	public void start(BundleContext context) throws Exception {
 		plugin = this;
 		loadConfig();
-		readEmailSetting();
+		readSetting();
 	}
 
 	private void loadConfig() {
@@ -105,8 +107,9 @@ public class CDF implements BundleActivator {
 		return properties;
 	}
 
-	private void readEmailSetting() throws Exception {
+	private void readSetting() throws Exception {
 		properties = readProperties();
+		
 		EMAIL_HOSTNAME = properties.getProperty("mail.smtp.host");
 		EMAIL_SSLONCONNECT = "true".equalsIgnoreCase(properties
 				.getProperty("mail.smtp.useSSL"));
@@ -116,6 +119,8 @@ public class CDF implements BundleActivator {
 		EMAIL_AUTHUSERNAME = properties.getProperty("sender.name",
 				"CDF Messenger");
 		EMAIL_AUTHPASS = properties.getProperty("sender.password");
+		
+		FILE_SERVER_PATH = properties.getProperty("fileserver.path");
 	}
 
 	public Properties getProperties() {

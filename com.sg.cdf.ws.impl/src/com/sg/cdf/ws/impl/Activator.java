@@ -29,6 +29,7 @@ public class Activator implements BundleActivator {
 
 	private ServiceRegistration<?> registration;
 
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -53,7 +54,9 @@ public class Activator implements BundleActivator {
 			Iterator<String> iter = conf.stringPropertyNames().iterator();
 			while (iter.hasNext()) {
 				String key = iter.next();
-				props.put(key, conf.getProperty(key));
+				if(key.startsWith("ws.")){
+					props.put(key.substring(3), conf.getProperty(key));
+				}
 			}
 
 			// ×¢²á·þÎñ
