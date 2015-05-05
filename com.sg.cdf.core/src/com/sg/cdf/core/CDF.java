@@ -37,6 +37,10 @@ public class CDF implements BundleActivator {
 
 	public static String EMAIL_AUTHPASS = null;
 
+	public static String CAD_CONVERTER_PATH = null;
+
+	public static int OFFICE_TIMEOUT = 3;
+
 	// The shared instance
 	private static CDF plugin;
 
@@ -109,7 +113,7 @@ public class CDF implements BundleActivator {
 
 	private void readSetting() throws Exception {
 		properties = readProperties();
-		
+
 		EMAIL_HOSTNAME = properties.getProperty("mail.smtp.host");
 		EMAIL_SSLONCONNECT = "true".equalsIgnoreCase(properties
 				.getProperty("mail.smtp.useSSL"));
@@ -119,8 +123,15 @@ public class CDF implements BundleActivator {
 		EMAIL_AUTHUSERNAME = properties.getProperty("sender.name",
 				"CDF Messenger");
 		EMAIL_AUTHPASS = properties.getProperty("sender.password");
-		
+
 		FILE_SERVER_PATH = properties.getProperty("fileserver.path");
+
+		CAD_CONVERTER_PATH = properties.getProperty("cadconverter.path");
+
+		String timeout = properties.getProperty("office.timeout");
+		if (timeout != null && timeout != "") {
+			OFFICE_TIMEOUT = Integer.parseInt(timeout);
+		}
 	}
 
 	public Properties getProperties() {

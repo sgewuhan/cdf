@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Officeconverter
+Bundle-SymbolicName: com.sg.cdf.officeconverter
+Bundle-Version: 1.0.0
+Bundle-Activator: com.sg.cdf.officeconverter.OfficeActivator
+Bundle-Vendor: SG
+Require-Bundle: org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Export-Package: com.sg.cdf.officeconverter,
+ com.sg.cdf.officeconverter.officeprovider
+Bundle-ClassPath: libs/jacob.jar,
+ .

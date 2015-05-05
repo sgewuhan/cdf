@@ -1,7 +1,7 @@
 Bundle-ManifestVersion: 2
 Bundle-Name: Jodconverter
 Bundle-SymbolicName: org.artofsolving.jodconverter;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.0
 Bundle-Activator: org.artofsolving.jodconverter.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.apache.commons.io;bundle-version="2.0.1",

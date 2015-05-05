@@ -24,6 +24,8 @@ public class ConvertContentProvider extends ContentProvider {
 
 	public String targetMediaType;// 目标文件类型
 
+	public String sourceMediaType;// 源文件类型
+
 	public String downloadContext;// 提供下载的上下文
 
 	@Override
@@ -40,13 +42,14 @@ public class ConvertContentProvider extends ContentProvider {
 			}
 
 			File targetFile = new File(targetPath);
-			if (downloadContext!=null) {
+			if (downloadContext != null) {
 				targetFile = new File(CDF.FILE_SERVER_PATH + File.separator
 						+ downloadContext + File.separator
 						+ targetFile.getName());
 			}
 
-			ContentConverter.convert(srcFile, targetFile, targetMediaType);
+			ContentConverter.convert(srcFile, targetFile, targetMediaType,
+					sourceMediaType);
 
 			return Status.OK_STATUS;
 		} catch (Exception e) {

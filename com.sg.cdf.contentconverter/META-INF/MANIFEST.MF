@@ -6,6 +6,7 @@ Bundle-Activator: com.sg.cdf.contentconverter.ContentConverter
 Bundle-Vendor: SG
 Require-Bundle: org.eclipse.core.runtime,
  com.sg.cdf.core;bundle-version="1.0.0",
- org.artofsolving.jodconverter;bundle-version="1.0.0"
+ org.artofsolving.jodconverter;bundle-version="1.0.0",
+ com.sg.cdf.officeconverter;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
