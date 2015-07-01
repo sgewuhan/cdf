@@ -14,6 +14,7 @@ public class OfficeConverterProvider {
 //		AbstractOfficeConverter converter = getComponent(filename);
 		if (converter != null) {
 			converter.convert(inputFile, outputFile);
+			converter.clear();
 		}
 	}
 

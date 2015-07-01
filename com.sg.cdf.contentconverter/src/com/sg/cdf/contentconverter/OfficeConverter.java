@@ -13,6 +13,7 @@ public class OfficeConverter {
 				.getComponent(filename);
 		if (converter != null) {
 			converter.convert(inputFile, outputFile);
+			converter.clear();
 		}
 	}
 

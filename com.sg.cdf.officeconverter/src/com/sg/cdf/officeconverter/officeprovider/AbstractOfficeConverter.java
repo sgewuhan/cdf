@@ -13,6 +13,7 @@ public abstract class AbstractOfficeConverter {
 	private ActiveXComponent app;
 
 	public void convert(File inputFile, File outputFile) throws Exception {
+//		ComThread.InitSTA();
 		String filename = inputFile.getPath();
 		String toFilename = outputFile.getPath();
 		if (app == null) {
@@ -34,19 +35,20 @@ public abstract class AbstractOfficeConverter {
 		if (tofile.exists()) {
 			tofile.delete();
 		}
-		
+
 		final Timer timer = new Timer();
-        TimerTask tt=new TimerTask() { 
-            @Override
-            public void run() {
-            	Dispatch.call(doc, "Close", false);
-            	app.invoke("Quit", wdDoNotSaveChanges);
-                timer.cancel();
-            }
-        };
-		
-        timer.schedule(tt, 3000);
-		
+		TimerTask tt = new TimerTask() {
+			@Override
+			public void run() {
+				Dispatch.call(doc, "Close", false);
+				app.invoke("Quit", wdDoNotSaveChanges);
+//				ComThread.Release();
+				timer.cancel();
+			}
+		};
+
+		timer.schedule(tt, 3000);
+
 		Dispatch.call(doc,//
 				"SaveAs", //
 				toFilename, // FileName
@@ -54,13 +56,16 @@ public abstract class AbstractOfficeConverter {
 
 		Dispatch.call(doc, "Close", false);
 		app.invoke("Quit", wdDoNotSaveChanges);
+//		ComThread.Release();
 		timer.cancel();
 	}
 
 	protected abstract String getApplicationName();
 
 	public void clear() {
-		if (app != null)
+		if (app != null) {
 			app.invoke("Quit", wdDoNotSaveChanges);
+//			ComThread.Release();
+		}
 	}
 }
