@@ -40,7 +40,7 @@ public abstract class AbstractOfficeConverter {
             @Override
             public void run() {
             	Dispatch.call(doc, "Close", false);
-//            	app.invoke("Quit", wdDoNotSaveChanges);
+            	app.invoke("Quit", wdDoNotSaveChanges);
                 timer.cancel();
             }
         };
@@ -53,7 +53,7 @@ public abstract class AbstractOfficeConverter {
 				wdFormatPDF);
 
 		Dispatch.call(doc, "Close", false);
-//		app.invoke("Quit", wdDoNotSaveChanges);
+		app.invoke("Quit", wdDoNotSaveChanges);
 		timer.cancel();
 	}
 

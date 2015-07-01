@@ -12,9 +12,10 @@ import com.sg.cdf.officeconverter.officeprovider.WordConverter;
 public class OfficeActivator implements BundleActivator {
 
 	private static BundleContext context;
-	private static WordConverter wordConverter;
-	private static ExcelConverter excelConverter;
-	private static PPTConverter pptConverter;
+
+	// private static WordConverter wordConverter;
+	// private static ExcelConverter excelConverter;
+	// private static PPTConverter pptConverter;
 
 	static BundleContext getContext() {
 		return context;
@@ -29,9 +30,9 @@ public class OfficeActivator implements BundleActivator {
 	 */
 	public void start(BundleContext bundleContext) throws Exception {
 		OfficeActivator.context = bundleContext;
-		wordConverter = new WordConverter();
-		excelConverter = new ExcelConverter();
-		pptConverter = new PPTConverter();
+		// wordConverter = new WordConverter();
+		// excelConverter = new ExcelConverter();
+		// pptConverter = new PPTConverter();
 	}
 
 	/*
@@ -42,22 +43,22 @@ public class OfficeActivator implements BundleActivator {
 	 */
 	public void stop(BundleContext bundleContext) throws Exception {
 		OfficeActivator.context = null;
-		wordConverter.clear();
-		excelConverter.clear();
-		pptConverter.clear();
+		// wordConverter.clear();
+		// excelConverter.clear();
+		// pptConverter.clear();
 	}
 
 	public static AbstractOfficeConverter getComponent(String filename) {
 		int fileType = FileUtil.getFileType(filename);
 
 		if (FileUtil.FILETYPE_WORD_FILE == fileType) {
-			return wordConverter;
+			return new WordConverter();
 		}
 		if (FileUtil.FILETYPE_EXCEL_FILE == fileType) {
-			return excelConverter;
+			return new ExcelConverter();
 		}
 		if (FileUtil.FILETYPE_PPT_FILE == fileType) {
-			return pptConverter;
+			return new PPTConverter();
 		}
 
 		return null;
