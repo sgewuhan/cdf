@@ -5,6 +5,8 @@ public class WordConverter extends AbstractOfficeConverter {
 	@Override
 	protected String getApplicationName() {
 		return "Word.Application";
+//		return "KWPS.Application";
+
 	}
 
 }

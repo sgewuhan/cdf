@@ -29,7 +29,7 @@
             name="工作通知传递参数"
             persistence="com.sg.cdf.persistence.mongodb.MongoDBJsonDistribution">
          <distributor
-               class="com.sg.cdf.demo.demo2.distributor.DistributorByEmailWithParameter">
+               class="com.sg.cdf.demo.demo2.distributor.ReportDistributor">
          </distributor>
          <parameter
                name="templateURL">

@@ -31,9 +31,9 @@ public abstract class Processor implements Serializable{
 	private boolean invokeSet(String parameter, Object value)
 			throws IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException {
-		Method[] methods = getClass().getDeclaredMethods();
+		Method[] methods = getClass().getMethods();
 		for (int i = 0; i < methods.length; i++) {
-			if (methods[i].getName().equalsIgnoreCase(parameter)) {
+			if (methods[i].getName().equalsIgnoreCase("set"+parameter)) {
 				methods[i].invoke(this, value);
 				return true;
 			}
@@ -43,7 +43,7 @@ public abstract class Processor implements Serializable{
 
 	private boolean putFieldValue(String parameter, Object value) {
 		try {
-			Field field = getClass().getDeclaredField(parameter);
+			Field field = getClass().getField(parameter);
 			field.set(this, value);
 			return true;
 		} catch (NoSuchFieldException e) {

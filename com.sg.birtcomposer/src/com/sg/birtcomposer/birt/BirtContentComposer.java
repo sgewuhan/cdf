@@ -124,6 +124,7 @@ public class BirtContentComposer {
 				"Must set output stream before generate ContentBody");
 		render.setOutputStream(stream);
 		render.setOption(IRenderOption.HTML_PAGINATION, Boolean.TRUE);
+		render.setEmitterID("org.eclipse.birt.report.engine.emitter.docx");
 		render.setOption(IRenderOption.RENDER_DPI, 96);
 		render.setOption(IPDFRenderOption.PAGE_OVERFLOW, IPDFRenderOption.FIT_TO_PAGE_SIZE);
 		return render;
@@ -131,13 +132,13 @@ public class BirtContentComposer {
 
 	private IRenderOption getExcelRenderOption() {
 		EXCELRenderOption render = new EXCELRenderOption();
-		render.setOutputFormat("xls");
+		render.setOutputFormat("xlsx");
 		OutputStream stream = getOutPutStream();
 		Assert.isNotNull(stream,
 				"Must set output stream before generate ContentBody");
 		render.setOutputStream(stream);
+		render.setEmitterID("org.eclipse.birt.report.engine.emitter.xlsx");
 		render.setSupportedImageFormats("PNG");
-
 		return render;
 	}
 

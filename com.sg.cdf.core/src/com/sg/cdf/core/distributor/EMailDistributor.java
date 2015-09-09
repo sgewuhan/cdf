@@ -73,7 +73,12 @@ public abstract class EMailDistributor extends Distributor {
 		email.setSSLOnConnect(CDF.EMAIL_SSLONCONNECT);
 		email.setAuthentication(CDF.EMAIL_AUTHUSER, CDF.EMAIL_AUTHPASS);
 		String fromName = getFromName();
-		email.setFrom(CDF.EMAIL_AUTHUSER,fromName);
+		String fromEmail = getFromEmail();
+		email.setFrom(fromEmail,fromName);
+	}
+	
+	protected String getFromEmail(){
+		return CDF.EMAIL_AUTHUSER;
 	}
 
 	protected String getFromName() {

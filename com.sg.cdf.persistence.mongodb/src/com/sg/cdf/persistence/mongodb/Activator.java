@@ -88,6 +88,11 @@ public class Activator implements BundleActivator {
 		}
 		return db;
 	}
+	
+	
+	public static MongoClient getMongo() {
+		return mongo;
+	}
 
 	public static MongoClient createMongoClient(Properties props)
 			throws UnknownHostException {
