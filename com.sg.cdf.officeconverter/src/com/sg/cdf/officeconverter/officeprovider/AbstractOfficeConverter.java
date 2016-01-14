@@ -42,6 +42,7 @@ public abstract class AbstractOfficeConverter {
 			}
 		}
 		if (ex != null) {
+			ex.printStackTrace();
 			throw ex;
 		}
 	}
