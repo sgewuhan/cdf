@@ -1,71 +1,60 @@
 package com.sg.cdf.officeconverter.officeprovider;
 
 import java.io.File;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import com.jacob.activeX.ActiveXComponent;
+import com.jacob.com.ComThread;
 import com.jacob.com.Dispatch;
 
 public abstract class AbstractOfficeConverter {
-	static final int wdDoNotSaveChanges = 0;// 不保存待定的更改。
-	static final int wdFormatPDF = 17;// PDF 格式
-	private ActiveXComponent app;
 
 	public void convert(File inputFile, File outputFile) throws Exception {
-//		ComThread.InitSTA();
+		Exception ex = null;
 		String filename = inputFile.getPath();
 		String toFilename = outputFile.getPath();
-		if (app == null) {
-			app = new ActiveXComponent(getApplicationName());
-		}
-		app.setProperty("Visible", false);
 
-		Dispatch docs = app.getProperty("Documents").toDispatch();
-		System.out.println("打开文档..." + filename);
-		final Dispatch doc = Dispatch.call(docs,//
-				"Open", //
-				filename,// FileName
-				false,// ConfirmConversions
-				true // ReadOnly
-				).toDispatch();
-
-		System.out.println("转换文档到PDF..." + toFilename);
 		File tofile = new File(toFilename);
 		if (tofile.exists()) {
+			System.out.println("start 删除历史转换文档");
 			tofile.delete();
+			System.out.println("finish 删除历史转换文档");
 		}
 
-		final Timer timer = new Timer();
-		TimerTask tt = new TimerTask() {
-			@Override
-			public void run() {
-				Dispatch.call(doc, "Close", false);
-				app.invoke("Quit", wdDoNotSaveChanges);
-//				ComThread.Release();
-				timer.cancel();
+		Dispatch dis = null;
+		ActiveXComponent app = null;
+
+		try {
+			ComThread.InitSTA();
+			app = getActiveXComponent();
+			System.out.println("开始进行文档转换");
+			dis = openDocument(app, filename);
+			convert(dis, toFilename);
+			System.out.println("转换完成");
+		} catch (Exception e) {
+			ex = e;
+		} finally {
+			try {
+				dispose(app, dis);
+			} catch (Exception e) {
+				ex = e;
+			} finally {
+				ComThread.Release();
 			}
-		};
-
-		timer.schedule(tt, 3000);
-
-		Dispatch.call(doc,//
-				"SaveAs", //
-				toFilename, // FileName
-				wdFormatPDF);
-
-		Dispatch.call(doc, "Close", false);
-		app.invoke("Quit", wdDoNotSaveChanges);
-//		ComThread.Release();
-		timer.cancel();
-	}
-
-	protected abstract String getApplicationName();
-
-	public void clear() {
-		if (app != null) {
-			app.invoke("Quit", wdDoNotSaveChanges);
-//			ComThread.Release();
+		}
+		if (ex != null) {
+			throw ex;
 		}
 	}
+
+	protected abstract ActiveXComponent getActiveXComponent() throws Exception;
+
+	protected abstract Dispatch openDocument(ActiveXComponent app,
+			String filename) throws Exception;
+
+	protected abstract void convert(Dispatch dis, String toFilename)
+			throws Exception;
+
+	protected abstract void dispose(ActiveXComponent app, Dispatch dis)
+			throws Exception;
+
 }
