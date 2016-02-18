@@ -71,9 +71,8 @@ public class DWGConverter {
 
 	public void convert(File inputFile, File outputFile) {
 		if (CDF.CAD_CONVERTER_PATH != null) {
-			String cmdString = CDF.CAD_CONVERTER_PATH
-					+ " /r /e /p 1 /b 7 /lw 2 /f " + format + " /ad \""
-					+ inputFile.getPath() + "\"";
+			String cmdString = CDF.CAD_CONVERTER_PATH + " /r /e /p 1 /b 7 /lw 1 /f "
+					+ format + " /ad " + inputFile.getPath();
 			try {
 				Runtime.getRuntime().exec(cmdString);
 			} catch (Exception e) {
