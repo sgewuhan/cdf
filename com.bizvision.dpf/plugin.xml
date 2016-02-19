@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="processor" name="Processor" schema="schema/processor.exsd"/>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="com.bizvision.dpf.ui.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RCP Perspective"
+            class="com.bizvision.dpf.ui.Perspective"
+            id="com.bizvision.dpf.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="Message"
+            allowMultiple="true"
+            icon="icons/sample2.gif"
+            class="com.bizvision.dpf.ui.View"
+            id="com.bizvision.dpf.view">
+      </view>
+      <view
+            name="Mailboxes"
+            allowMultiple="true"
+            icon="icons/sample3.gif"
+            class="com.bizvision.dpf.ui.NavigationView"
+            id="com.bizvision.dpf.navigationView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Mail"
+            id="com.bizvision.dpf.category">
+      </category>
+      <command
+            name="Open Mailbox"
+            description="Opens a mailbox"
+            categoryId="com.bizvision.dpf.category"
+            id="com.bizvision.dpf.open">
+      </command>
+      <command
+            name="Open Message Dialog"
+            description="Open a message dialog"
+            categoryId="com.bizvision.dpf.category"
+            id="com.bizvision.dpf.openMessage">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="com.bizvision.dpf.open"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+SHIFT+O">
+      </key>
+      <key
+            commandId="com.bizvision.dpf.openMessage"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+SHIFT+M">
+      </key>
+      <key
+            commandId="org.eclipse.ui.file.exit"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+SHIFT+Q">
+      </key>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="com.bizvision.dpf.application"
+            name="Distributed Processing Framework">
+         <property
+               name="aboutText"
+               value="RCP Mail template created by PDE">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/sample2.gif">
+         </property>
+         <property
+               name="aboutImage"
+               value="product_lg.gif">
+         </property>
+      </product>
+   </extension>
+
+</plugin>

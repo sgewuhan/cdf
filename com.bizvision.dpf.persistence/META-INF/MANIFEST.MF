@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Persistence
+Bundle-SymbolicName: com.bizvision.dpf.persistence
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: BIZVISION
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.osgi
+Bundle-ClassPath: libs/mongo-java-driver-3.2.1.jar,
+ .

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Distributed Processing Framework
+Bundle-SymbolicName: com.bizvision.dpf;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.bizvision.dpf.DPFActivator
+Bundle-Vendor: bizvpm.com
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Export-Package: com.bizvision.dpf.runtime
