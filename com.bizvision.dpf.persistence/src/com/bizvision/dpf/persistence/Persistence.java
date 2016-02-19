@@ -7,24 +7,31 @@ import com.mongodb.DB;
 
 @WebService(endpointInterface = "com.bizvision.dpf.persistence.IPersistence")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
-public class MongoDBPersistence implements IPersistence {
+public class Persistence implements IPersistence {
 
 	private DB db;
 
-	public MongoDBPersistence(DB db) {
+	public Persistence(DB db) {
 		this.db = db;
 	}
 
 	@Override
-	public void doSaveTaskAllocator(String url) {
+	public String listTaskAllocators() {
 		// TODO Auto-generated method stub
-		
+		return db+"listTaskAllocators";
 	}
 
 	@Override
-	public String[] getAllTaskAllocator() {
+	public void updateTaskAllocatorState(String url, int state) {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println(url);
 	}
 
+	@Override
+	public void updateProcessor(ProcessorPersistable persistable) {
+		// TODO Auto-generated method stub
+		System.out.println(persistable.getId());
+	}
+
+	
 }

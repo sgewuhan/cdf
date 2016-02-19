@@ -4,7 +4,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IWorkbenchWindow;
 
-import com.bizvision.dpf.DPFActivator;
+import com.bizvision.dpf.Activator;
 
 
 public class MessagePopupAction extends Action {
@@ -18,7 +18,7 @@ public class MessagePopupAction extends Action {
         setId(ICommandIds.CMD_OPEN_MESSAGE);
         // Associate the action with a pre-defined command, to allow key bindings.
         setActionDefinitionId(ICommandIds.CMD_OPEN_MESSAGE);
-        setImageDescriptor(com.bizvision.dpf.DPFActivator.getImageDescriptor("/icons/sample3.gif"));
+        setImageDescriptor(com.bizvision.dpf.Activator.getImageDescriptor("/icons/sample3.gif"));
     }
 
     public void run() {

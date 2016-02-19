@@ -1,4 +1,4 @@
-package com.bizvision.dpf.server;
+package com.bizvision.dpf.persistence;
 
 public class ProcessorType {
 

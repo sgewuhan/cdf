@@ -6,7 +6,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 
-import com.bizvision.dpf.DPFActivator;
+import com.bizvision.dpf.Activator;
 
 
 public class OpenViewAction extends Action {
@@ -23,7 +23,7 @@ public class OpenViewAction extends Action {
 		setId(ICommandIds.CMD_OPEN);
         // Associate the action with a pre-defined command, to allow key bindings.
 		setActionDefinitionId(ICommandIds.CMD_OPEN);
-		setImageDescriptor(com.bizvision.dpf.DPFActivator.getImageDescriptor("/icons/sample2.gif"));
+		setImageDescriptor(com.bizvision.dpf.Activator.getImageDescriptor("/icons/sample2.gif"));
 	}
 	
 	public void run() {

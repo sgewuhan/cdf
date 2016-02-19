@@ -1,18 +1,11 @@
 package com.bizvision.dpf.server;
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
-import org.eclipse.core.internal.jobs.JobManager;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.jobs.Job;
-
 import com.bizvision.dpf.persistence.IPersistence;
-import com.bizvision.dpf.processor.Exception;
+import com.bizvision.dpf.persistence.ProcessorPersistable;
+import com.bizvision.dpf.persistence.ProcessorType;
 import com.bizvision.dpf.processor.IProcessor;
 import com.bizvision.dpf.processor.ProcessException;
 import com.bizvision.dpf.processor.ProcessorPerformence;
@@ -23,10 +16,19 @@ import com.bizvision.dpf.processor.Task;
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public class Processor implements IProcessor {
 
+	private static final int STATE_ONLINE = 1;
+
+	private static final int STATE_OFFLINE = 0;
+
 	private IProcessorConfig processorConfig;
+
 	private String url;
+
 	private TaskAllocator taskAllocator;
+
 	private IPersistence persistence;
+
+	private int state;
 
 	@Override
 	public Result execute(Task task) throws ProcessException {
@@ -41,29 +43,8 @@ public class Processor implements IProcessor {
 		return null;
 	}
 
-	public String genarateUrl(String processorBaseUrl, String ipAddress)
-			throws ProcessException {
-		int port = getAvailablePort(ipAddress);
-		url = processorBaseUrl + ":" + port + "/processor";
-		return url;
-	}
-
 	public String getUrl() {
 		return url;
-	}
-
-	private int getAvailablePort(String ipAddress) throws ProcessException {
-
-		Socket s = new Socket();
-		for (int port = 20000; port < 30000; port++) {
-			try {
-				s.bind(new InetSocketAddress(ipAddress, port));
-				s.close();
-				return port;
-			} catch (IOException e) {
-			}
-		}
-		throw new ProcessException("PORT NOT AVAILABLE", new Exception());
 	}
 
 	public IProcessorConfig getProcessorConfig() {
@@ -88,12 +69,55 @@ public class Processor implements IProcessor {
 	}
 
 	public void online() {
-		// TODO Auto-generated method stub
+		setState(STATE_ONLINE);
+		update();
+	}
 
+	private void update() {
+		ProcessorPersistable persistable = new ProcessorPersistable();
+		persistable.setUrl(getUrl());
+		persistable.setState(getState());
+		persistable.setMaxThreadCount(getMaxThreadCount());
+		ProcessorType[] type = getProcessorTypes();
+		for (int i = 0; i < type.length; i++) {
+			persistable.getProcessorTypes().add(type[i]);
+		}
+		persistable.setId(getId());
+		persistable.setName(getName());
+		persistence.updateProcessor(persistable);
 	}
 
 	public void offline() {
-		// TODO Auto-generated method stub
-
+		setState(STATE_OFFLINE);
+		update();
 	}
+
+	public int getMaxThreadCount() {
+		return processorConfig.getMaxThreadCount();
+	}
+
+	public String getId() {
+		return processorConfig.getId();
+	}
+
+	public String getName() {
+		return processorConfig.getName();
+	}
+
+	public ProcessorType[] getProcessorTypes() {
+		return processorConfig.getProcessorTypes();
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
 }

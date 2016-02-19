@@ -2,13 +2,17 @@ package com.bizvision.dpf.server;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 
+import com.bizvision.dpf.persistence.ProcessorType;
 import com.bizvision.dpf.runtime.IProcessorRunable;
 
 public class ProcessorConfig implements IProcessorConfig {
 
 	private IConfigurationElement ce;
+	
 	private String id;
+	
 	private String name;
+	
 	private int maxThreadCount;
 
 	private ProcessorType[] processorTypes;
@@ -36,10 +40,12 @@ public class ProcessorConfig implements IProcessorConfig {
 		return maxThreadCount;
 	}
 
+	@Override
 	public String getId() {
 		return id;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -48,5 +54,9 @@ public class ProcessorConfig implements IProcessorConfig {
 		return (IProcessorRunable) ce.createExecutableExtension("runable");
 	}
 
+	@Override
+	public ProcessorType[] getProcessorTypes() {
+		return processorTypes;
+	}
 
 }

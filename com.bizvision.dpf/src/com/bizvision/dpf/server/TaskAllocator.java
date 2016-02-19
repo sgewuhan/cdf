@@ -6,13 +6,14 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
 import com.bizvision.dpf.persistence.IPersistence;
+import com.bizvision.dpf.persistence.ProcessorType;
 import com.bizvision.dpf.processor.IProcessor;
 import com.bizvision.dpf.processor.ProcessorService;
 import com.bizvision.dpf.processor.Result;
 import com.bizvision.dpf.processor.Task;
 import com.bizvision.dpf.runtime.ITaskAllocator;
 
-@WebService(endpointInterface = "com.bizvision.dpf.server.ITaskAllocator")
+@WebService(endpointInterface = "com.bizvision.dpf.runtime.ITaskAllocator")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public class TaskAllocator implements ITaskAllocator {
 

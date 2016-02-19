@@ -14,13 +14,12 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 import com.mongodb.DB;
-import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.ServerAddress;
 import com.mongodb.MongoClientOptions.Builder;
 
-public class PersistenceActivator implements BundleActivator {
+public class Activator implements BundleActivator {
 
 	private DB db;
 	private String url;
@@ -33,8 +32,9 @@ public class PersistenceActivator implements BundleActivator {
 	}
 
 	private Endpoint createEndpoint() {
-		Endpoint endpoint = Endpoint.create(new MongoDBPersistence(db));
+		Endpoint endpoint = Endpoint.create(new Persistence(db));
 		endpoint.publish(url);
+		System.out.println(url);
 		return endpoint;
 	}
 

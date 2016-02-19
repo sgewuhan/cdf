@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -20,6 +21,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 import com.bizvision.dpf.persistence.IPersistence;
+import com.bizvision.dpf.persistence.PersistenceService;
 import com.bizvision.dpf.processor.ProcessException;
 import com.bizvision.dpf.server.IProcessorConfig;
 import com.bizvision.dpf.server.Processor;
@@ -29,13 +31,13 @@ import com.bizvision.dpf.server.TaskAllocator;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class DPFActivator extends AbstractUIPlugin {
+public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "com.bizvision.dpf"; //$NON-NLS-1$
 
 	// The shared instance
-	private static DPFActivator plugin;
+	private static Activator plugin;
 
 	private List<IProcessorConfig> processorConfigs;
 
@@ -43,20 +45,20 @@ public class DPFActivator extends AbstractUIPlugin {
 
 	private List<Endpoint> processorServices;
 
-	private String processorBaseUrl;
-
-	private String taskallocatorUrl;
-
-	private String processorIPAddress;
-
 	private IPersistence persistence;
 
 	private TaskAllocator taskAllocator;
 
+	private String port;
+
+	private String host;
+
+	private String persistenceUrl;
+
 	/**
 	 * The constructor
 	 */
-	public DPFActivator() {
+	public Activator() {
 	}
 
 	/*
@@ -91,9 +93,9 @@ public class DPFActivator extends AbstractUIPlugin {
 			Properties props = new Properties();
 			props.load(is);
 
-			processorBaseUrl = props.getProperty("dpf.processorBaseUrl");
-			processorIPAddress = props.getProperty("dpf.processorIPAddress");
-			taskallocatorUrl = props.getProperty("dpf.taskAllocatorUrl");
+			host = props.getProperty("dpf.host");
+			port = props.getProperty("dpf.port");
+			persistenceUrl = props.getProperty("persistence.url");
 
 		} catch (Exception e) {
 		} finally {
@@ -128,35 +130,39 @@ public class DPFActivator extends AbstractUIPlugin {
 		Processor processor = new Processor();
 		processor.setConfig(processorConfig);
 		processor.setTaskAllocator(taskAllocator);
-		String url = processor
-				.genarateUrl(processorBaseUrl, processorIPAddress);
+		String url = "http://"+host+":"+port+"/processor/"+processor.getId();
+		processor.setUrl(url);
 		processor.setPersistence(persistence);
 
 		Endpoint endpoint = Endpoint.create(processor);
 		endpoint.publish(url);
-
 		processor.online();
-
+		System.out.println("Processor Published:"+url);
 		return endpoint;
 	}
 
 	private void createTaskAllocatorService() {
+		String url = "http://"+host+":"+port+"/taskAllocator";
 		taskAllocator = new TaskAllocator();
-		taskAllocator.setUrl(taskallocatorUrl);
+		taskAllocator.setUrl(url);
 		taskAllocator.setPersistence(persistence);
 
 		taskAllocatorService = Endpoint.create(taskAllocator);
-		taskAllocatorService.publish(taskallocatorUrl);
+		taskAllocatorService.publish(url);
 		taskAllocator.online();
+		System.out.println("Task Allocator Published:"+url);
 	}
 
-	private IPersistence createPersistenceClient() {
-		return null;
+	private IPersistence createPersistenceClient() throws Exception {
+		PersistenceService service = new PersistenceService(new URL(persistenceUrl));
+		IPersistence persistence = service.getPort(IPersistence.class);
+		System.out.println("Persistence Connected:"+persistenceUrl);
+		return persistence;
 	}
 
 	private void registerProcessors() {
 		IExtensionRegistry eReg = Platform.getExtensionRegistry();
-		IExtensionPoint ePnt = eReg.getExtensionPoint(DPFActivator.PLUGIN_ID,
+		IExtensionPoint ePnt = eReg.getExtensionPoint(Activator.PLUGIN_ID,
 				"processor");
 		if (ePnt == null) {
 			return;
@@ -203,7 +209,7 @@ public class DPFActivator extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static DPFActivator getDefault() {
+	public static Activator getDefault() {
 		return plugin;
 	}
 
