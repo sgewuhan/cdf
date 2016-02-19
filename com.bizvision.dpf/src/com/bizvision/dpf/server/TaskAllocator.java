@@ -11,6 +11,7 @@ import com.bizvision.dpf.processor.IProcessor;
 import com.bizvision.dpf.processor.ProcessorService;
 import com.bizvision.dpf.processor.Result;
 import com.bizvision.dpf.processor.Task;
+import com.bizvision.dpf.runtime.IProcessExceptionCode;
 import com.bizvision.dpf.runtime.ITaskAllocator;
 
 @WebService(endpointInterface = "com.bizvision.dpf.runtime.ITaskAllocator")

@@ -4,8 +4,6 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IWorkbenchWindow;
 
-import com.bizvision.dpf.Activator;
-
 
 public class MessagePopupAction extends Action {
 

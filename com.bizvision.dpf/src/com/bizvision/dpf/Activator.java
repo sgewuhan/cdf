@@ -23,7 +23,6 @@ import org.osgi.framework.BundleContext;
 import com.bizvision.dpf.persistence.IPersistence;
 import com.bizvision.dpf.persistence.PersistenceService;
 import com.bizvision.dpf.processor.ProcessException;
-import com.bizvision.dpf.server.IProcessorConfig;
 import com.bizvision.dpf.server.Processor;
 import com.bizvision.dpf.server.ProcessorConfig;
 import com.bizvision.dpf.server.TaskAllocator;
@@ -39,7 +38,7 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 
-	private List<IProcessorConfig> processorConfigs;
+	private List<ProcessorConfig> processorConfigs;
 
 	private Endpoint taskAllocatorService;
 
@@ -115,7 +114,7 @@ public class Activator extends AbstractUIPlugin {
 
 	private void createProcessorServices() {
 		processorServices = new ArrayList<Endpoint>();
-		for (IProcessorConfig processorConfig : processorConfigs) {
+		for (ProcessorConfig processorConfig : processorConfigs) {
 			try {
 				Endpoint endpoint = createProcessorService(processorConfig);
 				processorServices.add(endpoint);
@@ -125,7 +124,7 @@ public class Activator extends AbstractUIPlugin {
 		}
 	}
 
-	private Endpoint createProcessorService(IProcessorConfig processorConfig)
+	private Endpoint createProcessorService(ProcessorConfig processorConfig)
 			throws ProcessException {
 		Processor processor = new Processor();
 		processor.setConfig(processorConfig);
@@ -167,7 +166,7 @@ public class Activator extends AbstractUIPlugin {
 		if (ePnt == null) {
 			return;
 		}
-		processorConfigs = new ArrayList<IProcessorConfig>();
+		processorConfigs = new ArrayList<ProcessorConfig>();
 		IExtension[] exts = ePnt.getExtensions();
 		for (int i = 0; i < exts.length; i++) {
 			IConfigurationElement[] confs = exts[i].getConfigurationElements();

@@ -20,7 +20,7 @@ public class Processor implements IProcessor {
 
 	private static final int STATE_OFFLINE = 0;
 
-	private IProcessorConfig processorConfig;
+	private ProcessorConfig processorConfig;
 
 	private String url;
 
@@ -47,11 +47,11 @@ public class Processor implements IProcessor {
 		return url;
 	}
 
-	public IProcessorConfig getProcessorConfig() {
+	public ProcessorConfig getProcessorConfig() {
 		return processorConfig;
 	}
 
-	public void setConfig(IProcessorConfig processorConfig) {
+	public void setConfig(ProcessorConfig processorConfig) {
 		this.processorConfig = processorConfig;
 	}
 

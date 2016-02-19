@@ -6,8 +6,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 
-import com.bizvision.dpf.Activator;
-
 
 public class OpenViewAction extends Action {
 	
