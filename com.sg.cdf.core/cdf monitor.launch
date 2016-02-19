@@ -37,5 +37,5 @@
 <booleanAttribute key="tracing" value="false"/>
 <booleanAttribute key="useCustomFeatures" value="false"/>
 <booleanAttribute key="useDefaultConfigArea" value="true"/>
-<stringAttribute key="workspace_bundles" value="com.sg.birtcomposer@default:default,com.sg.cdf.core@default:default,com.sg.cdf.customerized@default:default,com.sg.cdf.demo.http@default:default,com.sg.cdf.monitor@default:default,com.sg.cdf.persistence.mongodb@default:default,com.sg.cdf.ws.impl@default:default,com.sg.cdf.ws@default:default,com.tmt.cdf@default:default,cxf-dosgi-ri-singlebundle-distribution@default:default"/>
+<stringAttribute key="workspace_bundles" value="com.sg.birtcomposer@default:default,com.sg.cdf.core@default:default,com.sg.cdf.customerized@default:default,com.sg.cdf.demo.http@default:default,com.sg.cdf.monitor@default:default,com.sg.cdf.persistence.mongodb@default:default,com.sg.cdf.ws.impl@default:default,com.sg.cdf.ws@default:default,com.tmt.cdf@default:default"/>
 </launchConfiguration>

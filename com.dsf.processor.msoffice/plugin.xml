@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="com.bizvision.dpf.processor">
+      <processor
+            id="office.mswordprocessor"
+            maxThreadCount="5"
+            name="微软Word转换器"
+            runable="com.dsf.processor.msoffice.MSWordProcessorRunable">
+         <processorType
+               name="doc2pdf"
+               sourceType="doc"
+               targetType="pdf">
+         </processorType>
+         <processorType
+               name="docx2pdf"
+               sourceType="docx"
+               targetType="pdf">
+         </processorType>
+      </processor>
+   </extension>
+
+</plugin>

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Msoffice
+Bundle-SymbolicName: com.dsf.processor.msoffice;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: DSF
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: com.bizvision.dpf;bundle-version="1.0.0"
