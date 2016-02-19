@@ -5,9 +5,9 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
-import com.bizvision.dpf.persistence.ProcessorType;
-import com.bizvision.dpf.processor.Result;
-import com.bizvision.dpf.processor.Task;
+import com.bizvision.dpf.server.ProcessorType;
+import com.bizvision.dpf.server.Result;
+import com.bizvision.dpf.server.Task;
 
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.RPC)

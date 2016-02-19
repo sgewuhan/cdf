@@ -20,12 +20,12 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import com.bizvision.dpf.persistence.IPersistence;
-import com.bizvision.dpf.persistence.PersistenceService;
-import com.bizvision.dpf.processor.ProcessException;
+import com.bizvision.dpf.server.ProcessException;
 import com.bizvision.dpf.server.Processor;
 import com.bizvision.dpf.server.ProcessorConfig;
 import com.bizvision.dpf.server.TaskAllocator;
+import com.bizvision.dpf.service.IPersistence;
+import com.bizvision.dpf.service.PersistenceService;
 
 /**
  * The activator class controls the plug-in life cycle

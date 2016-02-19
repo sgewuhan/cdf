@@ -1,5 +1,5 @@
 
-package com.bizvision.dpf.processor;
+package com.bizvision.dpf.server;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

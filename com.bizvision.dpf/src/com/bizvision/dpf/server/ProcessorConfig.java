@@ -2,7 +2,6 @@ package com.bizvision.dpf.server;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 
-import com.bizvision.dpf.persistence.ProcessorType;
 import com.bizvision.dpf.runtime.IProcessorRunable;
 
 public class ProcessorConfig  {
@@ -47,7 +46,7 @@ public class ProcessorConfig  {
 		return name;
 	}
 
-	public IProcessorRunable getProcessorRunable() throws Exception {
+	public IProcessorRunable getProcessorRunable() throws java.lang.Exception {
 		return (IProcessorRunable) ce.createExecutableExtension("runable");
 	}
 

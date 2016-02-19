@@ -3,16 +3,10 @@ package com.bizvision.dpf.server;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
-import com.bizvision.dpf.persistence.IPersistence;
-import com.bizvision.dpf.persistence.ProcessorPersistable;
-import com.bizvision.dpf.persistence.ProcessorType;
-import com.bizvision.dpf.processor.IProcessor;
-import com.bizvision.dpf.processor.ProcessException;
-import com.bizvision.dpf.processor.ProcessorPerformence;
-import com.bizvision.dpf.processor.Result;
-import com.bizvision.dpf.processor.Task;
+import com.bizvision.dpf.service.IPersistence;
+import com.bizvision.dpf.service.IProcessor;
 
-@WebService(endpointInterface = "com.bizvision.dpf.processor.IProcessor")
+@WebService(endpointInterface = "com.bizvision.dpf.service.IProcessor")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public class Processor implements IProcessor {
 

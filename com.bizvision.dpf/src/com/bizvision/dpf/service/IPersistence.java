@@ -1,5 +1,5 @@
 
-package com.bizvision.dpf.persistence;
+package com.bizvision.dpf.service;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -7,6 +7,8 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.ws.Action;
+
+import com.bizvision.dpf.server.ProcessorPersistable;
 
 
 /**

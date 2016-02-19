@@ -5,14 +5,11 @@ import java.net.URL;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
-import com.bizvision.dpf.persistence.IPersistence;
-import com.bizvision.dpf.persistence.ProcessorType;
-import com.bizvision.dpf.processor.IProcessor;
-import com.bizvision.dpf.processor.ProcessorService;
-import com.bizvision.dpf.processor.Result;
-import com.bizvision.dpf.processor.Task;
 import com.bizvision.dpf.runtime.IProcessExceptionCode;
 import com.bizvision.dpf.runtime.ITaskAllocator;
+import com.bizvision.dpf.service.IPersistence;
+import com.bizvision.dpf.service.IProcessor;
+import com.bizvision.dpf.service.ProcessorService;
 
 @WebService(endpointInterface = "com.bizvision.dpf.runtime.ITaskAllocator")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
@@ -41,9 +38,9 @@ public class TaskAllocator implements ITaskAllocator {
 
 	@Override
 	public Result allocateByProcesserType(ProcessorType processerType, Task task)
-			throws Exception {
+			throws java.lang.Exception {
 		if (processerType == null) {
-			throw new Exception(IProcessExceptionCode.NO_PROCESSERTYPE);
+			throw new java.lang.Exception(IProcessExceptionCode.NO_PROCESSERTYPE);
 		}
 		return allocateByProcesserTypes(new ProcessorType[] { processerType },
 				task);
@@ -51,29 +48,29 @@ public class TaskAllocator implements ITaskAllocator {
 
 	@Override
 	public Result allocateByProcesserTypes(ProcessorType[] processerTypes,
-			Task task) throws Exception {
+			Task task) throws java.lang.Exception {
 		if (processerTypes == null || processerTypes.length == 0) {
-			throw new Exception(IProcessExceptionCode.NO_PROCESSERTYPE);
+			throw new java.lang.Exception(IProcessExceptionCode.NO_PROCESSERTYPE);
 		}
 		IProcessor[] processors = getProcessors(processerTypes);
 		if (processors.length == 0) {
-			throw new Exception(IProcessExceptionCode.NO_REG_PROCESSOR);
+			throw new java.lang.Exception(IProcessExceptionCode.NO_REG_PROCESSOR);
 		}
 		IProcessor processor = lookup(processors);
 		if (processor == null) {
-			throw new Exception(IProcessExceptionCode.NO_PROCESSOR);
+			throw new java.lang.Exception(IProcessExceptionCode.NO_PROCESSOR);
 		}
 		return processor.execute(task);
 	}
 
-	private IProcessor lookup(IProcessor[] processors) throws Exception {
+	private IProcessor lookup(IProcessor[] processors) throws java.lang.Exception {
 		// TODO Auto-generated method stub
 		return null;
 
 	}
 
 	private IProcessor[] getProcessors(ProcessorType[] processerTypes)
-			throws Exception {
+			throws java.lang.Exception {
 		IProcessor[] result = new IProcessor[0];
 		for (ProcessorType processerType : processerTypes) {
 			IProcessor[] processors = getProcesserService(processerType);
@@ -97,7 +94,7 @@ public class TaskAllocator implements ITaskAllocator {
 				ProcessorService ps = new ProcessorService(url);
 				IProcessor processor = ps.getPort(IProcessor.class);
 				result = arrayAppend(result, new IProcessor[] { processor });
-			} catch (Exception e) {
+			} catch (java.lang.Exception e) {
 				// TODO
 			}
 		}
@@ -111,7 +108,7 @@ public class TaskAllocator implements ITaskAllocator {
 
 	@Override
 	public Result allocate(String sourceType, String targetType, Task task)
-			throws Exception {
+			throws java.lang.Exception {
 		ProcessorType[] processorTypes = getProcessorTypes(sourceType,
 				targetType);
 		return allocateByProcesserTypes(processorTypes, task);

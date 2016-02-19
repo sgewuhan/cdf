@@ -1,5 +1,5 @@
 
-package com.bizvision.dpf.processor;
+package com.bizvision.dpf.server;
 
 import javax.xml.ws.WebFault;
 
@@ -19,14 +19,14 @@ public class ProcessException
      * Java type that goes as soapenv:Fault detail element.
      * 
      */
-    private com.bizvision.dpf.processor.Exception faultInfo;
+    private com.bizvision.dpf.server.Exception faultInfo;
 
     /**
      * 
      * @param message
      * @param faultInfo
      */
-    public ProcessException(String message, com.bizvision.dpf.processor.Exception faultInfo) {
+    public ProcessException(String message, com.bizvision.dpf.server.Exception faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,7 +37,7 @@ public class ProcessException
      * @param faultInfo
      * @param cause
      */
-    public ProcessException(String message, com.bizvision.dpf.processor.Exception faultInfo, Throwable cause) {
+    public ProcessException(String message, com.bizvision.dpf.server.Exception faultInfo, Throwable cause) {
         super(message, cause);
         this.faultInfo = faultInfo;
     }
@@ -47,7 +47,7 @@ public class ProcessException
      * @return
      *     returns fault bean: com.bizvision.dpf.processor.Exception
      */
-    public com.bizvision.dpf.processor.Exception getFaultInfo() {
+    public com.bizvision.dpf.server.Exception getFaultInfo() {
         return faultInfo;
     }
 
