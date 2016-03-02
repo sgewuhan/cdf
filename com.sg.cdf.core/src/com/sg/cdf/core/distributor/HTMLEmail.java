@@ -22,7 +22,13 @@ public class HTMLEmail extends EMailDistributor {
 
 	public String toName;
 
+	public String cc;
+
+	public String ccName;
+
 	public String fromName;
+
+	public String fromEmail;
 
 	@Override
 	protected void setupEmail(Email email, ContentProvider cp)
@@ -31,6 +37,16 @@ public class HTMLEmail extends EMailDistributor {
 
 		email.addTo(to, toName);
 
+		if (cc != null) {
+			try {
+				String[] ccs = cc.split(";");
+				String[] ccnames = ccName.split(";");
+				for (int i = 0; i < ccnames.length; i++) {
+					email.addCc(ccs[i], ccnames[i]);
+				}
+			} catch (Exception e) {
+			}
+		}
 		// 设置邮件标题
 		email.setSubject(title);
 
@@ -49,6 +65,37 @@ public class HTMLEmail extends EMailDistributor {
 		if (fromName != null && !fromName.isEmpty())
 			return fromName;
 		return super.getFromName();
+	}
+
+	@Override
+	protected String getFromEmail() {
+		if (fromEmail != null && !fromEmail.isEmpty())
+			return fromEmail;
+		return super.getFromEmail();
+	}
+
+	public void setFromEmail(String fromEmail) {
+		this.fromEmail = fromEmail;
+	}
+
+	public void setFromName(String fromName) {
+		this.fromName = fromName;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public void setToName(String toName) {
+		this.toName = toName;
 	}
 
 }

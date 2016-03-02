@@ -20,7 +20,6 @@ import com.sg.cdf.core.request.ContentDistributionRequest;
 import com.sg.cdf.core.request.CommonDistributionRequest;
 import com.sg.cdf.core.request.IDistributionJob;
 import com.sg.cdf.demo.demo2.contentprovider.ContentProviderDemo;
-import com.sg.cdf.demo.demo2.distributor.DistributorByEmailWithParameter;
 import com.sg.cdf.persistence.mongodb.MongoDBByteDistribution;
 
 public class DemoEntryPoint extends AbstractEntryPoint {
@@ -115,7 +114,7 @@ public class DemoEntryPoint extends AbstractEntryPoint {
 
 	
 		// 添加发布器，注意该发布器必须在扩展中进行注册
-		req.registeDistributor(new DistributorByEmailWithParameter());
+//		req.registeDistributor(new DistributorByEmailWithParameter());
 		// 创建发布任务,并运行
 		req.createDistributionJob(true);
 

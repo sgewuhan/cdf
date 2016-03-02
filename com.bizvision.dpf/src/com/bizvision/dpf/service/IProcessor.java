@@ -1,14 +1,18 @@
 
-package com.bizvision.dpf.processor;
+package com.bizvision.dpf.service;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
 import javax.xml.ws.FaultAction;
+
+import com.bizvision.dpf.server.ProcessException;
+import com.bizvision.dpf.server.ProcessorPerformence;
+import com.bizvision.dpf.server.Result;
+import com.bizvision.dpf.server.Task;
 
 
 /**
@@ -19,9 +23,6 @@ import javax.xml.ws.FaultAction;
  */
 @WebService(name = "IProcessor", targetNamespace = "http://server.dpf.bizvision.com/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
-@XmlSeeAlso({
-    ObjectFactory.class
-})
 public interface IProcessor {
 
 

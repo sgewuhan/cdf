@@ -15,7 +15,7 @@ import com.sg.cdf.core.content.HTMLContentBody;
 import com.sg.cdf.core.content.TextContentBody;
 import com.sg.cdf.demo.demo1.distributor.DistributorEmail;
 
-public class DistributorByEmailWithParameter extends DistributorEmail {
+public class ReportDistributor extends DistributorEmail {
 
 	/**
 	 * 
