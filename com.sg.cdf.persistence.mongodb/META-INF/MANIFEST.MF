@@ -9,5 +9,5 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: com.sg.cdf.persistence.mongodb
-Bundle-ClassPath: libs/mongo-java-driver-2.11.3.jar,
- .
+Bundle-ClassPath: .,
+ libs/mongo-java-driver-3.2.1.jar

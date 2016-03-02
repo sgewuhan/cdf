@@ -108,8 +108,8 @@ public class Activator implements BundleActivator {
 		}
 
 		Builder builder = MongoClientOptions.builder();
-		builder.autoConnectRetry("true".equalsIgnoreCase(props //$NON-NLS-1$
-				.getProperty("db.options.autoConnectRetry"))); //$NON-NLS-1$
+//		builder.autoConnectRetry("true".equalsIgnoreCase(props //$NON-NLS-1$
+//				.getProperty("db.options.autoConnectRetry"))); //$NON-NLS-1$
 		builder.connectionsPerHost(Integer.parseInt(props
 				.getProperty("db.options.connectionsPerHost"))); //$NON-NLS-1$
 		builder.maxWaitTime(Integer.parseInt(props
